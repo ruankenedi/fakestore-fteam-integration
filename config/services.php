@@ -14,6 +14,11 @@ return [
     |
     */
 
+    'fakestore' => [
+        'base_url' => env('FAKESTORE_BASE_URL', 'https://fakestoreapi.com'),
+        'timeout'  => env('FAKESTORE_TIMEOUT', 10),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
