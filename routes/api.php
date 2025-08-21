@@ -72,7 +72,7 @@ Route::middleware(['integration'])->group(function () {
         return response()->json($products);
     });
 
-    // Buscar produto por ID
+    // Search for product by ID
     Route::get('/products/{id}', function ($id) {
         $product = Product::with('category')->find($id);
         if (!$product) {
