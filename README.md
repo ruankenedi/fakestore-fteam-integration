@@ -54,15 +54,10 @@ Copie o arquivo de exemplo e configure o `.env`:
 cp .env.example .env
 ```
 
-Edite e configure a conexão com o banco de dados MySQL:
+Em seguida, gere a chave de aplicação do Laravel com o comando:
 
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=fakestore
-DB_USERNAME=root
-DB_PASSWORD=secret
+```bash
+php artisan key:generate
 ```
 
 ### 4. Rodar migrações
