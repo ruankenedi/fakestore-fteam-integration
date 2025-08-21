@@ -1,66 +1,189 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Integração com FakeStore API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este projeto implementa uma integração com a [FakeStore API](https://fakestoreapi.com), permitindo sincronizar produtos e categorias para um banco de dados local em Laravel, além de disponibilizar endpoints para consultas com filtros.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Sincronização de produtos e categorias da FakeStore API
+-   Armazenamento no banco de dados local
+-   Endpoints para consulta de produtos e categorias
+-   Filtros avançados para busca de produtos
+-   Estrutura preparada para expansão
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Tecnologias
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   PHP (Laravel)
+-   MySQL
+-   Composer
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📂 Estrutura do Projeto
 
-## Laravel Sponsors
+-   `app/Models/Product.php` → Model de produtos
+-   `app/Models/Category.php` → Model de categorias
+-   `app/Services/FakeStoreClient.php` → Cliente HTTP para integração
+-   `routes/api.php` → Definição das rotas da API
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+---
 
-### Premium Partners
+## ⚙️ Como rodar o projeto
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### 1. Clonar o repositório
 
-## Contributing
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Instalar dependências
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 3. Configurar variáveis de ambiente
 
-## Security Vulnerabilities
+Copie o arquivo de exemplo e configure o `.env`:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cp .env.example .env
+```
 
-## License
+Edite e configure a conexão com o banco de dados MySQL:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=fakestore
+DB_USERNAME=root
+DB_PASSWORD=secret
+```
+
+### 4. Rodar migrações
+
+```bash
+php artisan migrate
+```
+
+### 5. Iniciar o servidor
+
+```bash
+php artisan serve
+```
+
+A API estará disponível em `http://127.0.0.1:8000`
+
+---
+
+## 🔄 Sincronização com a FakeStore
+
+Para importar produtos e categorias:
+
+```http
+POST /api/integrations/fakestore/sync
+```
+
+**Exemplo de resposta:**
+
+```json
+{
+    "message": "Synchronization completed",
+    "imported_products": 20,
+    "imported_categories": 4
+}
+```
+
+---
+
+## 📡 Endpoints Disponíveis
+
+### Listar todos os produtos
+
+```http
+GET /api/products
+```
+
+### Buscar produtos com filtros
+
+```http
+GET /api/products?category=electronics&min_price=50&max_price=200&q=phone
+```
+
+### Listar todas as categorias
+
+```http
+GET /api/categories
+```
+
+### Buscar produtos por categoria
+
+```http
+GET /api/categories/{id}/products
+```
+
+---
+
+## 🗄️ Decisão de Modelagem
+
+### Tabelas
+
+-   **products**
+
+    -   `id` (PK)
+    -   `category_id` (FK para categories)
+    -   `external_id` (referência da FakeStore API)
+    -   `title`, `description`, `price`, `image_url`
+    -   `raw` (JSON com dados originais da API)
+
+-   **categories**
+    -   `id` (PK)
+    -   `name`
+
+### Índices criados
+
+-   Índice em `products.category_id` (para buscas por categoria)
+-   Índice em `products.external_id` (para evitar duplicação na sincronização)
+-   Índice em `categories.name` (para consultas rápidas por nome)
+
+---
+
+## 🧪 Testando no Postman
+
+### Exemplo de filtros
+
+```http
+GET /api/products?category=men's clothing&min_price=20&max_price=100&q=shirt
+```
+
+Resposta esperada: lista de produtos da categoria "men's clothing", com preço entre 20 e 100, cujo título ou descrição contenha "shirt".
+
+---
+
+## 👨‍💻 Para desenvolvedores que baixarem do GitHub
+
+Se você baixou o projeto diretamente do GitHub:
+
+1. Execute `composer install`
+2. Configure seu `.env`
+3. Rode `php artisan migrate`
+4. Inicie o servidor com `php artisan serve`
+5. Faça a sincronização com `POST /api/integrations/fakestore/sync` antes de listar produtos
+
+---
+
+## 📌 Observações
+
+-   O projeto **não precisa de CRUD manual** para produtos e categorias. Eles são sincronizados da FakeStore.
+-   Apenas **endpoints de consulta e sincronização** foram implementados, como solicitado.
+
+---
+
+## 📖 Licença
+
+Este projeto é de uso livre para estudos e práticas de integração com APIs externas.
