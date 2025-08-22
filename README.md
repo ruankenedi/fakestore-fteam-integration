@@ -87,7 +87,7 @@ php artisan serve
 
 ```
 
-API disponível em: http://127.0.0.1:8000
+API disponível em: http://127.0.0.1:8000.
 
 ---
 
@@ -153,6 +153,8 @@ php artisan fakestore:sync
 ```bash
 php artisan serve --host=0.0.0.0 --port=8000
 ```
+
+API disponível em: http://127.0.0.1:8000.
 
 ---
 
