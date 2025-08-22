@@ -72,6 +72,8 @@ Certifique-se de que o MySQL está rodando localmente via XAMPP ou similar depen
 php artisan migrate
 ```
 
+Digite `yes` para confirmar a criação do banco e suas dependências.
+
 ### 6. Sincronizar produtos e categorias
 
 ```bash
