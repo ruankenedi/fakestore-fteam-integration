@@ -10,7 +10,6 @@ Este projeto implementa uma integração com a [FakeStore API](https://fakestore
 -   Armazenamento no banco de dados local
 -   Endpoints para consulta de produtos e categorias
 -   Filtros avançados para busca de produtos
--   Estrutura preparada para expansão
 -   Execução com Docker e sem ele
 
 ---
@@ -176,6 +175,8 @@ POST /api/integrations/fakestore/sync
 ---
 
 ## 📡 Endpoints Disponíveis
+
+Lembre de colocar o Header na requisição, por exemplo: X-Client-Id: testedemo.
 
 ### Buscar produto por id
 
