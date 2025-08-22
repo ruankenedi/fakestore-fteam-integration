@@ -31,7 +31,7 @@ class FakeStoreSync extends Command
     {
         $this->info('Starting FakeStore API synchronization...');
 
-        // Sincronizar categorias
+        // Synchronize categories
         $categories = $this->client->getCategories();
         $importedCategories = 0;
 
@@ -44,7 +44,7 @@ class FakeStoreSync extends Command
 
         $this->info("Imported categories: {$importedCategories}");
 
-        // Sincronizar produtos
+        // Synchronize products
         $products = $this->client->getProducts();
         $importedProducts = 0;
 
