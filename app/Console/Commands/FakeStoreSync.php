@@ -9,16 +9,8 @@ use App\Models\Category;
 
 class FakeStoreSync extends Command
 {
-    /**
-     * The name and signature of the console command.
-     */
     protected $signature = 'fakestore:sync';
-
-    /**
-     * The console command description.
-     */
     protected $description = 'Synchronizes products and categories from the FakeStore API with the local database';
-
     protected $client;
 
     public function __construct(FakeStoreClient $client)
@@ -47,12 +39,10 @@ class FakeStoreSync extends Command
         // Synchronize products
         $products = $this->client->getProducts();
         $importedProducts = 0;
+        $updatedProducts = 0;
 
         foreach ($products as $p) {
-            $category = Category::where('name', $p['category'])->first();
-            if (!$category) {
-                $category = Category::create(['name' => $p['category']]);
-            }
+            $category = Category::firstOrCreate(['name' => $p['category']]);
 
             $product = Product::updateOrCreate(
                 ['external_id' => $p['id']],
@@ -66,10 +56,15 @@ class FakeStoreSync extends Command
                 ]
             );
 
-            $importedProducts++;
+            if ($product->wasRecentlyCreated) {
+                $importedProducts++;
+            } else {
+                $updatedProducts++;
+            }
         }
 
         $this->info("Imported products: {$importedProducts}");
+        $this->info("Updated products: {$updatedProducts}");
         $this->info('Synchronization completed successfully!');
     }
 }
