@@ -177,6 +177,12 @@ POST /api/integrations/fakestore/sync
 
 ## 📡 Endpoints Disponíveis
 
+### Listar produto por id
+
+```http
+GET /api/products/{id}
+```
+
 ### Listar todos os produtos
 
 ```http
@@ -195,10 +201,10 @@ GET /api/products?category=electronics&min_price=50&max_price=200&search=Women
 GET /api/categories
 ```
 
-### Buscar produtos por categoria
+### Buscar categoria por id
 
 ```http
-GET /api/categories/{id}/
+GET /api/categories/{id}
 ```
 
 ---
