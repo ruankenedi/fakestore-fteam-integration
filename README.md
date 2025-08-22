@@ -36,6 +36,60 @@ Este projeto implementa uma integração com a [FakeStore API](https://fakestore
 
 ## ⚙️ Como rodar o projeto
 
+## ⚙️ Passo a Passo — Sem Docker
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/ruankenedi/fakestore-fteam-integration.git
+cd fakestore-fteam-integration
+```
+
+### 2. Instale dependências
+
+```bash
+composer install
+```
+
+### 3. Configure o `.env`
+
+Copie o arquivo de exemplo:
+
+```bash
+cp .env.example-no-docker .env
+```
+
+### 4. Gerar App Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Criar o banco e rodar as migrações
+
+Certifique-se de que o MySQL está rodando localmente via XAMPP ou similar dependendo do seu sistema.
+
+```bash
+php artisan migrate
+```
+
+### 6. Sincronizar produtos e categorias
+
+```bash
+php artisan fakestore:sync
+```
+
+### 7. Rodar servidor Laravel
+
+```bash
+php artisan serve
+
+```
+
+API disponível em: http://127.0.0.1:8000
+
+---
+
 ## ⚙️ Passo a Passo — Com Docker
 
 ### 1. Clonar o repositório
@@ -98,6 +152,8 @@ php artisan fakestore:sync
 ```bash
 php artisan serve --host=0.0.0.0 --port=8000
 ```
+
+---
 
 ## 🔄 Sincronização com a FakeStore caso queira fazer a parte
 
