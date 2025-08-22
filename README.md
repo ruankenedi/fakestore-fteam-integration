@@ -26,7 +26,7 @@ Este projeto implementa uma integração com a [FakeStore API](https://fakestore
 
 ## 📂 Estrutura do Projeto
 
--   `app/Console/Commands/FakeStoreSync.php` → Comando para sincronizar com a FakeStore
+-   `app/Console/Commands/FakeStoreSync.php` → Sincronização com a FakeStore
 -   `app/Models/Product.php` → Model de produtos
 -   `app/Models/Category.php` → Model de categorias
 -   `app/Services/FakeStoreClient.php` → Cliente HTTP para integração
