@@ -105,12 +105,6 @@ cd fakestore-fteam-integration
 cp .env.example .env
 ```
 
-Em seguida, gere a chave de aplicação do Laravel com o comando:
-
-```bash
-php artisan key:generate
-```
-
 ### 3. Docker Compose
 
 Antes, se certifique que o docker está `instalado` e `rodando` na sua máquina.
@@ -131,6 +125,12 @@ docker exec -it fakestore_app bash
 
 ```bash
 composer install
+```
+
+Em seguida, gere a chave de aplicação do Laravel com o comando para preencher o campo APP_KEY do arquivo `.env`:
+
+```bash
+php artisan key:generate
 ```
 
 ### 6. Rodar migrações
