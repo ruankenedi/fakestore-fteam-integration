@@ -176,7 +176,7 @@ POST /api/integrations/fakestore/sync
 
 ## 📡 Endpoints Disponíveis
 
-Lembre de colocar o Header na requisição, por exemplo: X-Client-Id: testedemo.
+Lembre de colocar o Header na requisição, por exemplo: `X-Client-Id: testedemo`.
 
 ### Buscar produto por id
 
