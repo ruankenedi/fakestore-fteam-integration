@@ -177,7 +177,7 @@ POST /api/integrations/fakestore/sync
 
 ## 📡 Endpoints Disponíveis
 
-### Listar produto por id
+### Buscar produto por id
 
 ```http
 GET /api/products/{id}
