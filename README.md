@@ -186,7 +186,7 @@ GET /api/products
 ### Buscar produtos com filtros
 
 ```http
-GET /api/products?category=electronics&min_price=50&max_price=200&q=phone
+GET /api/products?category=electronics&min_price=50&max_price=200&search=Women
 ```
 
 ### Listar todas as categorias
@@ -198,7 +198,7 @@ GET /api/categories
 ### Buscar produtos por categoria
 
 ```http
-GET /api/categories/{id}/products
+GET /api/categories/{id}/
 ```
 
 ---
@@ -232,22 +232,10 @@ GET /api/categories/{id}/products
 ### Exemplo de filtros
 
 ```http
-GET /api/products?category=men's clothing&min_price=20&max_price=100&q=shirt
+GET /api/products?category=men's clothing&min_price=20&max_price=100&search=shirt
 ```
 
 Resposta esperada: lista de produtos da categoria "men's clothing", com preço entre 20 e 100, cujo título ou descrição contenha "shirt".
-
----
-
-## 👨‍💻 Para desenvolvedores que baixarem do GitHub
-
-Se você baixou o projeto diretamente do GitHub:
-
-1. Execute `composer install`
-2. Configure seu `.env`
-3. Rode `php artisan migrate`
-4. Inicie o servidor com `php artisan serve`
-5. Faça a sincronização com `POST /api/integrations/fakestore/sync` antes de listar produtos
 
 ---
 
