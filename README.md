@@ -11,6 +11,7 @@ Este projeto implementa uma integração com a [FakeStore API](https://fakestore
 -   Endpoints para consulta de produtos e categorias
 -   Filtros avançados para busca de produtos
 -   Estrutura preparada para expansão
+-   Execução com Docker e sem ele
 
 ---
 
@@ -19,11 +20,13 @@ Este projeto implementa uma integração com a [FakeStore API](https://fakestore
 -   PHP (Laravel)
 -   MySQL
 -   Composer
+-   Docker
 
 ---
 
 ## 📂 Estrutura do Projeto
 
+-   `app/Console/Commands/FakeStoreSync.php` → Comando para sincronizar com a FakeStore
 -   `app/Models/Product.php` → Model de produtos
 -   `app/Models/Category.php` → Model de categorias
 -   `app/Services/FakeStoreClient.php` → Cliente HTTP para integração
@@ -56,6 +59,10 @@ php artisan key:generate
 
 ### 3. Docker Compose
 
+Antes, se certifique que o docker está `instalado` e `rodando` na sua máquina.
+
+Depois de confirmar o requisito acima, segue executando os comandos abaixo na sequência.
+
 ```bash
 docker compose up -d --build
 ```
@@ -79,6 +86,8 @@ php artisan migrate
 ```
 
 ### 7. Sincronizar FakeStore API
+
+Caso já tenha sincronizado em algum momento antes, pode ser que as categorias venha como 0.
 
 ```bash
 php artisan fakestore:sync
