@@ -33,22 +33,16 @@ Este projeto implementa uma integração com a [FakeStore API](https://fakestore
 
 ## ⚙️ Como rodar o projeto
 
+## ⚙️ Passo a Passo — Com Docker
+
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/ruankenedi/fakestore-fteam-integration.git
+cd fakestore-fteam-integration
 ```
 
-### 2. Instalar dependências
-
-```bash
-composer install
-```
-
-### 3. Configurar variáveis de ambiente
-
-Copie o arquivo de exemplo e configure o `.env`:
+### 2. Criar arquivo `.env`
 
 ```bash
 cp .env.example .env
@@ -60,23 +54,43 @@ Em seguida, gere a chave de aplicação do Laravel com o comando:
 php artisan key:generate
 ```
 
-### 4. Rodar migrações
+### 3. Docker Compose
+
+```bash
+docker compose up -d --build
+```
+
+### 4. Acessar o container da aplicação
+
+```bash
+docker exec -it fakestore_app bash
+```
+
+### 5. Instalar dependências dentro do container
+
+```bash
+composer install
+```
+
+### 6. Rodar migrações
 
 ```bash
 php artisan migrate
 ```
 
-### 5. Iniciar o servidor
+### 7. Sincronizar FakeStore API
 
 ```bash
-php artisan serve
+php artisan fakestore:sync
 ```
 
-A API estará disponível em `http://127.0.0.1:8000`
+### 8. Iniciar servidor Laravel (dentro do container)
 
----
+```bash
+php artisan serve --host=0.0.0.0 --port=8000
+```
 
-## 🔄 Sincronização com a FakeStore
+## 🔄 Sincronização com a FakeStore caso queira fazer a parte
 
 Para importar produtos e categorias:
 
